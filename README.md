@@ -156,22 +156,40 @@ flowchart TD
 
 The conduit-opening estimate uses a **greedy grid search** across candidate opening settings, fitting up to three conduits in one pass. An opening of `1.0` means fully open; `0.25` corresponds to approximately **75% restriction** in the model. It is an explainable prototype fitting method, not full probabilistic data assimilation.
 
-### 🩺 Drain Health Index (DHI)
+---
 
-StormTwin combines estimated blockage, water-level utilization, recent level rise, flow deficit and deviation from the healthy-network model:
+## 🩺 Drain Health Index (DHI)
+
+StormTwin evaluates the health of each drainage conduit using five indicators: estimated blockage, water-level utilization, recent level rise, flow deficit, and deviation from the healthy-network model.
+
+### 📐 DHI Formula
 
 $$
-\mathrm{DHI}=\operatorname{clip}_{[0,100]}\left(100\left[1-\left(0.5B+0.2U+0.1R+0.1F+0.1M\right)\right]\right)
+\mathrm{DHI} = 100 \times \left[1 - \left(0.5B + 0.2U + 0.1R + 0.1F + 0.1M\right)\right]
 $$
 
-Here, **B** is estimated blockage (`1 − effective opening`), **U** is utilization, **R** is recent rise, **F** is flow deficit and **M** is model deviation.
+The calculated DHI is clipped to the **0–100 range**, where higher scores indicate healthier drainage conditions.
 
-| DHI score | Prototype condition |
-|:--:|:--|
-| **75–100** | 🟢 Healthy |
-| **50–<75** | 🟡 Degraded |
-| **25–<50** | 🟠 Critical |
-| **<25** | 🔴 Severe |
+### 🔍 Formula Components
+
+| Parameter | Description | Weight |
+|:---:|---|:---:|
+| **B** | Estimated blockage (1 − effective opening) | 50% |
+| **U** | Water-level utilization | 20% |
+| **R** | Recent water-level rise | 10% |
+| **F** | Flow deficit | 10% |
+| **M** | Deviation from the healthy-network model | 10% |
+
+### 🚦 Drain Health Classification
+
+| DHI Score | Health Status | Interpretation |
+|:---:|:---|---|
+| 75–100 | 🟢 Healthy | Normal drainage conditions |
+| 50–74.9 | 🟡 Degraded | Reduced drainage efficiency |
+| 25–49.9 | 🟠 Critical | Significant drainage restriction |
+| Below 25 | 🔴 Severe | Severe drainage deterioration |
+
+> **Why DHI matters:** StormTwin combines hydraulic simulation and sensor observations to identify potentially deteriorating drain segments before overflow occurs.
 
 ---
 
@@ -378,23 +396,6 @@ StormTwin studies whether **earlier drain-condition awareness** and **scenario-b
 - **Not in this build:** ROS 2, Gazebo, Webots and Unreal Engine.
 
 **Next research steps:** real sensor integration; rainfall and drainage-network calibration; more robust hydraulic state estimation; production MQTT testing; external rainfall forecasts; and evaluation against observed flooding and sustainability metrics.
-
----
-
-## 👩‍💻 Project Team
-
-**IoT & Sustainability Course Project**  
-**Department of Computer Science and Engineering (Data Science)**  
-**Vishwakarma Institute of Technology, Pune**
-
-| Team members |
-|:--|
-| Bhagyashri Ahire |
-| Ketaki Bhagat |
-| Shweta Birle |
-| Samruddhi Chavan |
-
-**Project guide:** Prof. Mrs. Ashwini Nawadkar
 
 ---
 
