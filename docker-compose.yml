@@ -1,0 +1,6 @@
+# Optional: a real MQTT broker.  docker compose up -d   then   MQTT_HOST=localhost python run_pipeline.py
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    ports: ["1883:1883"]
+    volumes: ["./mosquitto.conf:/mosquitto/config/mosquitto.conf"]

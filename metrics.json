@@ -1,0 +1,23 @@
+{
+  "auc": 0.9793,
+  "alarm_threshold": 0.8,
+  "precision": 0.978,
+  "recall": 0.379,
+  "train_events": 117,
+  "test_events": 50,
+  "test_event_level": {
+    "flood_events": 17,
+    "detected": 17,
+    "no_flood_events": 33,
+    "false_alarm_events": 0,
+    "median_lead_min": 3.0
+  },
+  "importance_auc_drop": {
+    "rise_5": 0.0254,
+    "rain_now": 0.0244,
+    "rain_15": 0.0071,
+    "q_ratio": 0.007,
+    "q_out": 0.0067,
+    "depth_ratio": 0.0053
+  }
+}

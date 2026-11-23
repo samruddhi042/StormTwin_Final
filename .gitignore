@@ -1,0 +1,58 @@
+
+@'
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+.envrc
+
+# Credentials and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+credentials.json
+service-account*.json
+service_account*.json
+*firebase-adminsdk*.json
+secrets/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Node.js / React
+node_modules/
+.next/
+.nuxt/
+dist/
+build/
+coverage/
+.turbo/
+
+# Local database and runtime files
+*.sqlite
+*.sqlite3
+*.db
+*.log
+logs/
+
+# Editor and system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Archives and secret scan reports
+StormTwin.zip
+gitleaks-report*
+'@ | Add-Content -Path ".gitignore"

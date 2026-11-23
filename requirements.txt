@@ -1,0 +1,9 @@
+pyswmm>=2.0
+swmm-toolkit
+numpy
+pandas
+scikit-learn
+joblib
+streamlit>=1.50
+plotly>=5.24
+paho-mqtt>=2.0
